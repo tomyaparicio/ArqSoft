@@ -1,27 +1,32 @@
 package main
 
-import("fmt"
-        "errors"
-	     "net/http"
-		 "ioutil"
-		 "encoding/json")
+import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+)
 
-		    http://api.mercadolibre.com/sites/MLA/search?q=Motorola
-			type Categories struct {
+type Categories []Category
+type Category struct {
+	ID   string `json:"id"`
+	Name string `json: "name"`
+}
 
-			}
+func main() {
+	GetCategories("MLA")
+	if err != nil {
 
-func main(){
-	 GetCategories("MLA")
+	}
+	fmt.Println("Las categorias son")
+}
+
+func GetCategories(siteID string) (Categories, error) {
+
+	response, err := http.Get              //completar
+	bytes := iotil.ReadAll(response.Bytes) //completar
+	var Categories Categories
+	json.Unmarshal(bytes, &cats)
+
+	return cats, nil
 
 }
-			
-
-func GetCategories(siteID string) (Categories, error){
-
- response := http.Get//completar
-bytes := iotil.ReadAll(response.Bytes)//completar
-var Categories Categories
-json.Unmarshal(bytes, &cats)
-
-}		 
